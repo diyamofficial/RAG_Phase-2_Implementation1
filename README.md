@@ -1,11 +1,30 @@
-# RAG Phase 2 – Retrieval Augmented Generation Pipeline
+# RAG Internship Project – Retrieval Augmented Generation Pipeline
 
-An end-to-end Retrieval-Augmented Generation (RAG) pipeline built using LangChain, LangGraph, Groq LLMs, embeddings, and ChromaDB for context-aware question answering and evaluation.
+An end-to-end Retrieval-Augmented Generation (RAG) pipeline built using LangChain, LangGraph, Groq LLMs, embeddings, and ChromaDB for context-aware question answering and evaluation. This repository documents the full progression of the project — from foundational RAG concepts (Phase 1) to a production-style, optimized RAG pipeline (Phase 2) with formal evaluation using RAGAS.
 
 ---
+
 ## Pipeline Architecture
 
 ![Pipeline Diagram](pipeline.png)
+
+---
+
+## Project Phases
+
+### Phase 1 – RAG Basics
+`RAG_Phase1_Basics.ipynb`
+Covers the fundamentals of building a RAG system: document loading, basic chunking, embeddings, vector storage, and simple retrieval + generation.
+
+### Phase 2 – Optimized RAG Pipeline
+`Phase2_RAG_beforeImprovement.ipynb` → `RAG_Optimized_Final.ipynb`
+Builds on Phase 1 with an improved, LangGraph-orchestrated pipeline, better chunking/retrieval strategies, Groq LLM integration, and a hybrid retrieval approach. Includes a before/after notebook pair showing the baseline pipeline and the final optimized version.
+
+### Evaluation
+`evaluation_results/`
+Contains the RAGAS-based evaluation comparing the baseline pipeline against the hybrid/optimized pipeline.
+
+---
 
 ## Features
 
@@ -17,7 +36,9 @@ An end-to-end Retrieval-Augmented Generation (RAG) pipeline built using LangChai
 * LangGraph-based pipeline orchestration
 * Groq LLM integration for response generation
 * Wikipedia-based document retrieval
-* LLM-as-a-Judge evaluation for answer relevancy and faithfulness assessment
+* Hybrid retrieval pipeline (baseline vs. improved comparison)
+* RAGAS-based evaluation (answer relevancy, faithfulness, context precision/recall)
+* LLM-as-a-Judge evaluation for additional qualitative assessment
 
 ---
 
@@ -29,6 +50,7 @@ An end-to-end Retrieval-Augmented Generation (RAG) pipeline built using LangChai
 * Groq API
 * ChromaDB
 * Google Generative AI Embeddings
+* RAGAS (evaluation framework)
 * Jupyter Notebook / Google Colab
 
 ---
@@ -36,10 +58,20 @@ An end-to-end Retrieval-Augmented Generation (RAG) pipeline built using LangChai
 ## Repository Structure
 
 ```text
-Phase2_RAG.ipynb     -> Main notebook containing the complete RAG workflow
-README.md            -> Project documentation
-requirements.txt     -> Required dependencies
-.gitignore           -> Ignored files and folders
+RAG_Phase1_Basics.ipynb              -> Phase 1: foundational RAG pipeline
+Phase2_RAG_beforeImprovement.ipynb   -> Phase 2: baseline pipeline before optimization
+RAG_Optimized_Final.ipynb            -> Phase 2: final optimized/hybrid RAG pipeline
+pipeline.png                         -> Pipeline architecture diagram
+requirements.txt                     -> Required dependencies
+.gitignore                           -> Ignored files and folders
+README.md                            -> Project documentation
+
+evaluation_results/
+    README.md                        -> Evaluation methodology and notes
+    baseline_ragas_results.csv       -> RAGAS scores for the baseline pipeline
+    hybrid_ragas_results.csv         -> RAGAS scores for the hybrid/optimized pipeline
+    comparison_table.png             -> Side-by-side metric comparison table
+    ragas_comparison_barplot.png     -> Bar plot comparing baseline vs. hybrid results
 ```
 
 ---
@@ -50,9 +82,10 @@ requirements.txt     -> Required dependencies
 2. Split documents into chunks
 3. Generate vector embeddings
 4. Store embeddings in ChromaDB
-5. Retrieve relevant context based on user queries
+5. Retrieve relevant context based on user queries (baseline and hybrid strategies)
 6. Generate responses using Groq LLM
-7. Evaluate generated responses using LLM-based judging
+7. Evaluate generated responses using RAGAS and LLM-based judging
+8. Compare baseline vs. optimized pipeline performance
 
 ---
 
@@ -81,28 +114,29 @@ Set the following environment variables or Colab secrets:
 
 ## Running the Project
 
-Open the notebook:
+Run the notebooks in order:
 
-```text
-Phase2_RAG.ipynb
-```
+1. `RAG_Phase1_Basics.ipynb` – foundational pipeline
+2. `Phase2_RAG_beforeImprovement.ipynb` – baseline Phase 2 pipeline
+3. `RAG_Optimized_Final.ipynb` – final optimized/hybrid pipeline
 
-Run all cells sequentially to execute the complete RAG pipeline.
+Run all cells sequentially in each notebook to execute the complete RAG workflow. Evaluation outputs are stored in `evaluation_results/`.
 
 ---
 
 ## Evaluation
 
-The project includes an LLM-as-a-Judge evaluation approach to assess:
+The project includes both a RAGAS-based evaluation and an LLM-as-a-Judge approach to assess:
 
 * Answer Relevancy
 * Faithfulness
+* Context Precision / Recall
 * Context Alignment
+
+Results comparing the baseline pipeline to the hybrid/optimized pipeline are available in `evaluation_results/`, including CSV score files, a comparison table, and a bar plot visualization.
 
 ---
 
 ## Author
 
 Diya Mathews
-
-
